@@ -1,4 +1,5 @@
 .venv
 datasets
+resized_images
 
 __pycache__

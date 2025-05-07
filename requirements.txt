@@ -1,3 +1,7 @@
 pandas
 matplotlib
 Pillow
+opencv-python
+numpy
+scikit-learn
+tensorflow
