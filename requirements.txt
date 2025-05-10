@@ -2,12 +2,9 @@ pandas
 matplotlib
 Pillow
 opencv-python
-<<<<<<< Updated upstream
 numpy
 scikit-learn
 tensorflow
-=======
 scikit-learn
 numpy
 pytesseract
->>>>>>> Stashed changes
