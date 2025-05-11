@@ -11,3 +11,4 @@ pytesseract
 scikit-learn
 numpy
 pytesseract
+imgaug
