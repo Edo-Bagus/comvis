@@ -161,7 +161,7 @@ def analyze_text_features(image_path, confidence_threshold=0.6, min_confidence=0
     Returns:
         dict: Hasil analisis semua fitur teks dalam satu dictionary.
     """
-    reader = easyocr.Reader(['en', 'id'], gpu=False)
+    reader = easyocr.Reader(['en', 'id'], gpu=True)
     results = reader.readtext(image_path)
 
     # Baca gambar
@@ -285,22 +285,22 @@ def analyze_text_features(image_path, confidence_threshold=0.6, min_confidence=0
 def process_shape_features(folder_path, output_csv):
     data = []
     for filename in os.listdir(folder_path):
+        print("Processing: ", filename)
         if filename.lower().endswith(('.png', '.jpg', '.jpeg')):
             path = os.path.join(folder_path, filename)
             name = os.path.splitext(filename)[0]
             try:
-                image_number = int(name)
+                image_number = name
             except ValueError:
                 continue
 
-            text = analyze_text_features(path)
+            text = analyze_text_features(path, 0, 0)
             edge = extract_edge_features(path)
             visual = extract_visual_composition_features(path)
 
             data.append({'image_name': filename} | text | edge | visual)
 
     df = pd.DataFrame(data)
-    df = df.sort_values(by='image_name').reset_index(drop=True)
     df.to_csv(output_csv, index=False)
     print(f"✅ CSV berhasil disimpan: {output_csv}")
     
